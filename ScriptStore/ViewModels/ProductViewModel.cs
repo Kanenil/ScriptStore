@@ -68,9 +68,9 @@ namespace ScriptStore.ViewModels
             MessageBox.Show("Продукт успішно відредаговано", "Відредаговано");
         }
 
-        private async void AddProductMethod()
+        private void AddProductMethod()
         {
-            await _productService.AddItemAsync(new ProductDTO() { ProductName = ProductName,Price = Price,Count = Count,SupplierName =SupplierName });
+            _productService.AddItem(new ProductDTO() { ProductName = ProductName,Price = Price,Count = Count,SupplierName =SupplierName });
             MessageBox.Show("Продукт успішно додано", "Додано");
         }
 
