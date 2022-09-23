@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ScriptStore.Commands
 {
     public class RelayCommand : ICommand
     {
-        #region Fields
         private readonly Action<object> _executeAction;
         private readonly Predicate<object> _canExecuteAction;
-        #endregion
-        #region Constructors
         public RelayCommand(Action<object> executeAction)
         {
             _executeAction = executeAction;
@@ -24,15 +17,11 @@ namespace ScriptStore.Commands
             _executeAction = executeAction;
             _canExecuteAction = canExecuteAction;
         }
-        #endregion
-        #region Events
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
-        #endregion
-        #region Methods
         public bool CanExecute(object parameter)
         {
             return _canExecuteAction == null ? true : _canExecuteAction(parameter);
@@ -41,6 +30,5 @@ namespace ScriptStore.Commands
         {
             _executeAction(parameter);
         }
-        #endregion
     }
 }
